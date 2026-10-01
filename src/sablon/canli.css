@@ -1,0 +1,86 @@
+/* CANLI: dolu başlık bandı, yuvarlak köşeler, renkli etiketler. --a vurgu, --b ikincil renk. */
+.t-canli { font-family: Nunito, sans-serif; padding-top: 40px; }
+
+.t-canli .hd {
+  background: var(--a);
+  color: #fff;
+  border-radius: 22px;
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 62px 1fr auto;
+  column-gap: 18px;
+  align-items: center;
+  position: relative;
+  margin-bottom: 7px;
+}
+.t-canli .hd::after {
+  content: "";
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: -7px;
+  height: 7px;
+  border-radius: 0 0 10px 10px;
+  background: var(--b);
+}
+.t-canli .logo {
+  grid-row: 1 / 3;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--a);
+  display: grid;
+  place-items: center;
+  font: 800 20px "Baloo 2", sans-serif;
+  overflow: hidden;
+}
+.t-canli .kurum { font-size: 13px; font-weight: 700; opacity: 0.85; }
+.t-canli h1 { grid-column: 2; font: 800 32px/1.1 "Baloo 2", sans-serif; }
+.t-canli .meta { grid-column: 3; grid-row: 1 / 3; display: grid; justify-items: center; gap: 4px; }
+.t-canli .meta .sinif { background: var(--b); color: #3b2500; font: 800 17px "Baloo 2", sans-serif; padding: 3px 14px; border-radius: 999px; }
+.t-canli .meta .ders { font-size: 13px; font-weight: 700; }
+.t-canli .tur { display: none; }
+
+.t-canli h2 { font: 700 21px "Baloo 2", sans-serif; color: var(--a); display: flex; align-items: center; gap: 10px; }
+.t-canli h2::before { content: ""; width: 12px; height: 12px; border-radius: 4px; background: var(--b); flex: none; }
+
+/* Etiket kutunun üst kenarına biner; üst marj etiketin taşan kısmına yer açar. */
+.t-canli .box {
+  border-radius: 16px;
+  padding: 22px 20px 14px;
+  position: relative;
+  margin-top: 14px;
+  background: color-mix(in srgb, var(--a) 10%, #fff);
+  border: 2px solid var(--a);
+}
+.t-canli .box .lbl {
+  position: absolute;
+  top: -13px;
+  left: 18px;
+  background: var(--a);
+  color: #fff;
+  font: 700 14px "Baloo 2", sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 14px;
+  border-radius: 999px;
+}
+.t-canli .box.dikkat { background: color-mix(in srgb, var(--b) 14%, #fff); border-color: var(--b); border-style: dashed; }
+.t-canli .box.dikkat .lbl { background: var(--b); color: #3b2500; }
+.t-canli .box.dikkat li::before { background: var(--b); }
+
+.t-canli .ex .lbl { background: #1b1b1b; color: #fff; font: 700 14px "Baloo 2", sans-serif; padding: 2px 12px; border-radius: 8px; margin-right: 8px; }
+.t-canli .sira .lbl { background: var(--b); color: #3b2500; }
+.t-canli .sol { border-left: 4px solid var(--a); border-radius: 3px; padding-left: 14px; margin-left: 4px; }
+.t-canli .sl { font-weight: 800; color: var(--a); margin-right: 6px; }
+.t-canli .space { border: 2px dashed color-mix(in srgb, var(--a) 40%, #fff); border-radius: 16px; }
+
+.t-canli .ft { font-weight: 700; color: #3d4a49; }
+.t-canli .pn { width: 30px; height: 30px; border-radius: 50%; background: var(--a); color: #fff; display: grid; place-items: center; font: 700 15px "Baloo 2", sans-serif; }
+
+/* ---- yaprak test ---- */
+.t-canli .adsoyad span { border: 0; background: color-mix(in srgb, var(--a) 10%, #fff); border-radius: 999px; padding: 6px 14px; color: var(--a); font-weight: 800; }
+.t-canli .govde.test.iki::before { border-left: 2px dashed color-mix(in srgb, var(--a) 40%, #fff); }
+.t-canli .soru .no { background: var(--a); color: #fff; border-radius: 9px; font: 700 15px/26px "Baloo 2", sans-serif; }
+.t-canli .sik li::before { color: var(--a); }

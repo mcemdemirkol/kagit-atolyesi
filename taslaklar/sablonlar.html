@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kâğıt Atölyesi — şablon taslakları</title>
+<!-- Taslak için yazı tipleri dışarıdan yükleniyor; gerçek projede repoya gömülecek. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Nunito:wght@400;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #2a2c31; color: #e8e6e1; font: 15px/1.5 Figtree, system-ui, sans-serif; padding: 28px 24px 60px; }
+  .bar { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; max-width: 1040px; margin: 0 auto 24px; }
+  .bar h1 { font-size: 20px; font-weight: 700; }
+  .bar p { color: #a9a69f; flex: 1; min-width: 240px; }
+  .bar button { font: inherit; font-weight: 600; padding: 7px 14px; border-radius: 8px; border: 1px solid #5a5d66; background: #3a3d44; color: inherit; cursor: pointer; }
+  .bar button[aria-pressed="true"] { background: #e8e6e1; color: #2a2c31; }
+  .grid { display: flex; flex-wrap: wrap; gap: 32px 28px; justify-content: center; }
+  figure figcaption { margin-bottom: 10px; }
+  figure figcaption b { font-size: 16px; }
+  figure figcaption span { color: #a9a69f; margin-left: 8px; font-size: 13px; }
+  .sheet { zoom: .6; }
+  body.gri .page { filter: grayscale(1); }
+
+  /* ---------- ortak sayfa iskeleti (A4, 96dpi) ---------- */
+  .page { width: 794px; height: 1123px; background: #fff; color: #1b1b1b; padding: 56px 60px 44px; display: flex; flex-direction: column; position: relative; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,.45); font-size: 15.5px; line-height: 1.55; }
+  .page main { flex: 1; display: flex; flex-direction: column; gap: 18px; margin-top: 26px; }
+  .page ul { list-style: none; display: grid; gap: 5px; }
+  .page li { padding-left: 16px; position: relative; }
+  .page li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--a); }
+  .fr { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .86em; line-height: 1.15; margin: 0 2px; }
+  .fr > :first-child { border-bottom: 1.2px solid currentColor; padding: 0 3px; }
+  .fr > :last-child { padding: 0 3px; }
+  i.v { font-family: "Source Serif 4", Georgia, serif; font-style: italic; }
+  .sol { margin-top: 8px; }
+  .space { height: 150px; margin-top: 10px; }
+  .ft { display: flex; align-items: center; gap: 14px; font-size: 12px; margin-top: 18px; }
+  .ft .mid { flex: 1; text-align: center; }
+
+  /* ================= 1) SADE ================= */
+  .t-sade { --a: #1f3a5f; font-family: Figtree, sans-serif; }
+  .t-sade .hd { display: grid; grid-template-columns: 54px 1fr auto; column-gap: 16px; align-items: center; border-top: 3px solid var(--a); border-bottom: 1px solid #c9c9c9; padding: 16px 0 14px; }
+  .t-sade .logo { grid-row: 1 / 3; width: 54px; height: 54px; border: 1.5px solid var(--a); border-radius: 50%; display: grid; place-items: center; font-weight: 700; color: var(--a); font-size: 17px; }
+  .t-sade .kurum { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #666; }
+  .t-sade h1 { grid-column: 2; font-size: 30px; font-weight: 700; letter-spacing: -.01em; line-height: 1.15; }
+  .t-sade .meta { grid-column: 3; grid-row: 1 / 3; text-align: right; font-size: 13px; color: #444; display: grid; gap: 2px; }
+  .t-sade .meta .sinif { font-weight: 700; color: var(--a); font-size: 15px; }
+  .t-sade .tur { display: none; }
+  .t-sade h2 { font-size: 18px; font-weight: 700; color: var(--a); padding-bottom: 4px; border-bottom: 1px solid #c9c9c9; }
+  .t-sade .box { border-left: 3px solid var(--a); padding: 4px 0 4px 16px; }
+  .t-sade .box.dikkat { border-left-style: double; border-left-width: 6px; }
+  .t-sade .box .lbl { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--a); margin-bottom: 4px; }
+  .t-sade .ex .lbl { font-weight: 700; margin-right: 8px; border-bottom: 2px solid var(--a); }
+  .t-sade .sol { padding-left: 16px; color: #333; }
+  .t-sade .sl { font-weight: 600; font-style: italic; margin-right: 6px; }
+  .t-sade .space { border: 1px solid #c9c9c9; }
+  .t-sade .ft { border-top: 1px solid #c9c9c9; padding-top: 10px; color: #555; }
+  .t-sade .pn { font-weight: 700; color: var(--a); }
+
+  /* ================= 2) AKADEMİK ================= */
+  .t-akademik { --a: #7a1f2b; font-family: "Source Serif 4", Georgia, serif; font-size: 16px; }
+  .t-akademik .hd { text-align: center; display: flex; flex-direction: column; align-items: center; }
+  .t-akademik .logo { display: none; }
+  .t-akademik .kurum { order: 1; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; width: 100%; padding-bottom: 8px; border-bottom: 3px double #1b1b1b; }
+  .t-akademik .tur { order: 2; margin-top: 14px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--a); }
+  .t-akademik h1 { order: 3; font-size: 34px; font-weight: 600; font-style: italic; line-height: 1.2; margin-top: 2px; }
+  .t-akademik .meta { order: 4; font-size: 14px; margin-top: 6px; width: 100%; padding-bottom: 12px; border-bottom: 1px solid #1b1b1b; }
+  .t-akademik .meta .ders::after { content: "  ·  "; white-space: pre; }
+  .t-akademik main { counter-reset: kutu; }
+  .t-akademik p { text-align: justify; hyphens: auto; }
+  .t-akademik h2 { font-size: 19px; font-weight: 700; }
+  .t-akademik h2::before { content: "§ "; color: var(--a); }
+  .t-akademik .box { border: 1px solid #1b1b1b; padding: 16px 18px 12px; position: relative; margin-top: 6px; }
+  .t-akademik .box .lbl { position: absolute; top: -10px; left: 14px; background: #fff; padding: 0 8px; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--a); }
+  .t-akademik .box.dikkat { border-width: 2px; }
+  .t-akademik li::before { border-radius: 0; width: 5px; height: 5px; transform: rotate(45deg); }
+  .t-akademik .ex .lbl { font-weight: 700; font-variant: small-caps; letter-spacing: .04em; font-size: 1.05em; margin-right: 4px; }
+  .t-akademik .ex .lbl::after { content: "."; }
+  .t-akademik .sol { padding-left: 22px; }
+  .t-akademik .sl { font-style: italic; margin-right: 6px; }
+  .t-akademik .sl::after { content: " —"; }
+  .t-akademik .space { background: repeating-linear-gradient(#fff 0 29px, #b9b9b9 29px 30px); }
+  .t-akademik .ft { border-top: 3px double #1b1b1b; padding-top: 9px; font-size: 12.5px; font-style: italic; }
+  .t-akademik .pn { font-style: normal; font-weight: 700; }
+  .t-akademik .pn::before { content: "— "; } .t-akademik .pn::after { content: " —"; }
+
+  /* ================= 3) CANLI ================= */
+  .t-canli { --a: #0f766e; --b: #f59e0b; font-family: Nunito, sans-serif; padding-top: 40px; }
+  .t-canli .hd { background: var(--a); color: #fff; border-radius: 22px; padding: 20px 24px; display: grid; grid-template-columns: 62px 1fr auto; column-gap: 18px; align-items: center; position: relative; }
+  .t-canli .hd::after { content: ""; position: absolute; left: 28px; right: 28px; bottom: -7px; height: 7px; border-radius: 0 0 10px 10px; background: var(--b); }
+  .t-canli .logo { grid-row: 1 / 3; width: 62px; height: 62px; border-radius: 50%; background: #fff; color: var(--a); display: grid; place-items: center; font: 800 20px "Baloo 2", sans-serif; }
+  .t-canli .kurum { font-size: 13px; font-weight: 700; opacity: .85; }
+  .t-canli h1 { grid-column: 2; font: 800 32px/1.1 "Baloo 2", sans-serif; }
+  .t-canli .meta { grid-column: 3; grid-row: 1 / 3; display: grid; justify-items: center; gap: 4px; }
+  .t-canli .meta .sinif { background: var(--b); color: #3b2500; font: 800 17px "Baloo 2", sans-serif; padding: 3px 14px; border-radius: 999px; }
+  .t-canli .meta .ders { font-size: 13px; font-weight: 700; }
+  .t-canli .tur { display: none; }
+  .t-canli main { margin-top: 34px; }
+  .t-canli h2 { font: 700 21px "Baloo 2", sans-serif; color: var(--a); display: flex; align-items: center; gap: 10px; }
+  .t-canli h2::before { content: ""; width: 12px; height: 12px; border-radius: 4px; background: var(--b); }
+  .t-canli .box { border-radius: 16px; padding: 22px 20px 14px; position: relative; margin-top: 8px; background: #e6f4f2; border: 2px solid var(--a); }
+  .t-canli .box .lbl { position: absolute; top: -13px; left: 18px; background: var(--a); color: #fff; font: 700 14px "Baloo 2", sans-serif; letter-spacing: .06em; text-transform: uppercase; padding: 2px 14px; border-radius: 999px; }
+  .t-canli .box.dikkat { background: #fef3dc; border-color: var(--b); border-style: dashed; }
+  .t-canli .box.dikkat .lbl { background: var(--b); color: #3b2500; }
+  .t-canli .box.dikkat li::before { background: var(--b); }
+  .t-canli .ex .lbl { background: #1b1b1b; color: #fff; font: 700 14px "Baloo 2", sans-serif; padding: 2px 12px; border-radius: 8px; margin-right: 8px; }
+  .t-canli .sira .lbl { background: var(--b); color: #3b2500; }
+  .t-canli .sol { border-left: 4px solid var(--a); border-radius: 3px; padding-left: 14px; margin-left: 4px; }
+  .t-canli .sl { font-weight: 800; color: var(--a); margin-right: 6px; }
+  .t-canli .space { border: 2px dashed #9fb8b5; border-radius: 16px; }
+  .t-canli .ft { font-weight: 700; color: #3d4a49; }
+  .t-canli .pn { width: 30px; height: 30px; border-radius: 50%; background: var(--a); color: #fff; display: grid; place-items: center; font: 700 15px "Baloo 2", sans-serif; }
+
+  /* ================= 4) TEKNİK ================= */
+  .t-teknik { --a: #1d4ed8; font-family: "Space Grotesk", sans-serif; background-color: #fff; background-image: linear-gradient(#e3e8f1 1px, transparent 1px), linear-gradient(90deg, #e3e8f1 1px, transparent 1px); background-size: 19px 19px; }
+  .t-teknik .hd { display: grid; grid-template-columns: 76px 1fr 130px 110px; border: 1.5px solid #1b1b1b; background: #fff; }
+  .t-teknik .hd > * { padding: 8px 12px; border-right: 1.5px solid #1b1b1b; }
+  .t-teknik .hd > *::before { display: block; font: 500 9.5px "JetBrains Mono", monospace; letter-spacing: .12em; color: #6b7280; margin-bottom: 1px; }
+  .t-teknik .logo { grid-row: 1 / 3; display: grid; place-items: center; font: 700 20px "JetBrains Mono", monospace; color: var(--a); }
+  .t-teknik .kurum { grid-column: 2; font-weight: 600; font-size: 14px; border-bottom: 1.5px solid #1b1b1b; }
+  .t-teknik .kurum::before { content: "KURUM"; }
+  .t-teknik h1 { grid-column: 2; grid-row: 2; font-size: 25px; font-weight: 700; line-height: 1.2; }
+  .t-teknik h1::before { content: "KONU"; font-weight: 500 !important; }
+  .t-teknik .meta { grid-column: 3; grid-row: 1 / 3; display: grid; padding: 0 !important; }
+  .t-teknik .meta::before { display: none !important; }
+  .t-teknik .meta span { padding: 8px 12px; font-weight: 600; font-size: 14px; }
+  .t-teknik .meta span::before { display: block; font: 500 9.5px "JetBrains Mono", monospace; letter-spacing: .12em; color: #6b7280; }
+  .t-teknik .meta .ders { border-bottom: 1.5px solid #1b1b1b; }
+  .t-teknik .meta .ders::before { content: "DERS"; }
+  .t-teknik .meta .sinif::before { content: "SINIF"; }
+  .t-teknik .tur { grid-column: 4; grid-row: 1 / 3; border-right: 0 !important; font: 700 12px/1.35 "JetBrains Mono", monospace; text-transform: uppercase; color: var(--a); }
+  .t-teknik .tur::before { content: "BELGE"; }
+  .t-teknik main > p, .t-teknik .ex { background: #fff; outline: 6px solid #fff; }
+  .t-teknik h2 { font-size: 18px; font-weight: 700; background: #fff; align-self: flex-start; padding-right: 10px; }
+  .t-teknik h2::before { content: "02 / "; font: 500 13px "JetBrains Mono", monospace; color: var(--a); }
+  .t-teknik .box { background: #fff; border: 1.5px dashed #1b1b1b; padding: 12px 16px; position: relative; }
+  .t-teknik .box::before, .t-teknik .box::after { content: ""; position: absolute; width: 10px; height: 10px; border: 2.5px solid var(--a); }
+  .t-teknik .box::before { top: -3px; left: -3px; border-right: 0; border-bottom: 0; }
+  .t-teknik .box::after { bottom: -3px; right: -3px; border-left: 0; border-top: 0; }
+  .t-teknik .box .lbl { display: block; font: 700 12px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--a); margin-bottom: 5px; }
+  .t-teknik .box .lbl::before { content: "[ "; } .t-teknik .box .lbl::after { content: " ]"; }
+  .t-teknik .box.dikkat { border-style: solid; border-width: 2px; }
+  .t-teknik .box.dikkat .lbl::before { content: "! "; }
+  .t-teknik .box.dikkat .lbl::after { content: ""; }
+  .t-teknik li::before { border-radius: 0; height: 2px; width: 8px; top: .78em; left: 0; }
+  .t-teknik .ex .lbl { font: 700 13px "JetBrains Mono", monospace; text-transform: uppercase; color: #fff; background: #1b1b1b; padding: 2px 8px; margin-right: 8px; }
+  .t-teknik .sira .lbl { background: var(--a); }
+  .t-teknik .sol { border-left: 1.5px solid #1b1b1b; padding-left: 14px; }
+  .t-teknik .sl { font: 500 12px "JetBrains Mono", monospace; text-transform: uppercase; color: #6b7280; margin-right: 8px; }
+  .t-teknik .space { border: 1.5px solid #1b1b1b; }
+  .t-teknik .ft { font: 500 11px "JetBrains Mono", monospace; background: #fff; border: 1.5px solid #1b1b1b; padding: 6px 12px; }
+  .t-teknik .pn::before { content: "SAYFA 0"; }
+
+  /* ================= YAPRAK TEST (iki sütun) ================= */
+  .adsoyad { display: flex; gap: 14px; font-size: 13px; margin-top: 16px; }
+  .adsoyad span { flex: 2; border-bottom: 1.5px dotted #555; padding: 0 2px 3px; font-weight: 600; }
+  .adsoyad span + span { flex: 1; }
+  .page main.test { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 18px; }
+  .test .col { display: flex; flex-direction: column; padding-right: 24px; min-width: 0; }
+  .test .col + .col { padding: 0 0 0 24px; border-left: 1.5px solid #999; }
+  .soru { flex: 1; display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; line-height: 1.5; }
+  .soru > div { flex: 1; min-width: 0; }
+  .soru .no { font-weight: 800; min-width: 28px; text-align: center; }
+  .page .sik { list-style: none; display: grid; grid-template-columns: repeat(4, auto); justify-content: space-between; margin-top: 9px; }
+  .page .sik li { padding-left: 0; }
+  .page .sik li::before { content: counter(list-item, upper-alpha) ")"; position: static; display: inline; background: none; width: auto; height: auto; border-radius: 0; transform: none; font-weight: 800; margin-right: 5px; }
+
+  .t-canli .adsoyad span { border: 0; background: #e6f4f2; border-radius: 999px; padding: 6px 14px; color: var(--a); font-weight: 800; }
+  .t-canli main.test { margin-top: 20px; }
+  .t-canli .test .col + .col { border-left: 2px dashed #9fb8b5; }
+  .t-canli .soru .no { background: var(--a); color: #fff; border-radius: 9px; font: 700 15px/26px "Baloo 2", sans-serif; }
+  .t-canli .sik li::before { color: var(--a); }
+
+  .t-teknik .adsoyad { background: #fff; border: 1.5px solid #1b1b1b; border-top: 0; margin-top: 0; gap: 0; }
+  .t-teknik .adsoyad span { border: 0; padding: 7px 12px; font: 500 11px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: #6b7280; }
+  .t-teknik .adsoyad span + span { border-left: 1.5px solid #1b1b1b; }
+  .t-teknik main.test { background: #fff; border: 1.5px solid #1b1b1b; padding: 16px 14px; }
+  .t-teknik .test .col + .col { border-left: 1.5px solid #1b1b1b; }
+  .t-teknik .soru .no { background: #1b1b1b; color: #fff; font: 700 13px/24px "JetBrains Mono", monospace; }
+  .t-teknik .sik li::before { font-family: "JetBrains Mono", monospace; color: var(--a); top: auto; left: auto; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <h1>Kâğıt Atölyesi — şablon taslakları</h1>
+  <p>Dört aile, aynı içerik. Fotokopi çıktısını görmek için gri tonlamayı açın.</p>
+  <button id="gri" type="button" aria-pressed="false">Gri tonlama</button>
+</div>
+<div class="grid" id="grid"></div>
+
+<template id="icerik">
+  <header class="hd">
+    <div class="logo">ÖA</div>
+    <div class="kurum">Örnek Akademi</div>
+    <h1>Oran ve Orantı</h1>
+    <div class="meta"><span class="ders">Matematik</span><span class="sinif">7. Sınıf</span></div>
+    <div class="tur">Konu Anlatımı</div>
+  </header>
+  <main>
+    <p>İki çokluğun bölme yoluyla karşılaştırılmasına <b>oran</b> denir. <i class="v">a</i> sayısının <i class="v">b</i> sayısına oranı <span class="fr"><span><i class="v">a</i></span><span><i class="v">b</i></span></span> ya da <i class="v">a</i> : <i class="v">b</i> biçiminde yazılır (<i class="v">b</i> ≠ 0). İki oranın eşitliğine <b>orantı</b> denir.</p>
+    <h2>Orantının Özellikleri</h2>
+    <aside class="box not">
+      <span class="lbl">Not</span>
+      <ul>
+        <li><span class="fr"><span><i class="v">a</i></span><span><i class="v">b</i></span></span> = <span class="fr"><span><i class="v">c</i></span><span><i class="v">d</i></span></span> ise <i class="v">a</i> · <i class="v">d</i> = <i class="v">b</i> · <i class="v">c</i> olur (içler dışlar çarpımı).</li>
+        <li>Oranın birimi yoktur; karşılaştırılan çokluklar aynı birimle yazılır.</li>
+      </ul>
+    </aside>
+    <section class="ex">
+      <div class="q"><span class="lbl">Örnek 1</span> <span class="fr"><span>3</span><span>5</span></span> = <span class="fr"><span><i class="v">x</i></span><span>20</span></span> orantısında <i class="v">x</i> kaçtır?</div>
+      <div class="sol"><span class="sl">Çözüm</span> İçler dışlar çarpımından 5<i class="v">x</i> = 3 · 20 = 60 bulunur. Buradan <i class="v">x</i> = 12 olur.</div>
+    </section>
+    <aside class="box dikkat">
+      <span class="lbl">Dikkat</span>
+      <ul>
+        <li>Oranda sıra önemlidir: 2 : 3 ile 3 : 2 aynı oran değildir.</li>
+        <li>Paydası sıfır olan bir oran tanımsızdır.</li>
+      </ul>
+    </aside>
+    <section class="ex sira">
+      <div class="q"><span class="lbl">Sıra Sizde</span> Bir sınıftaki kız öğrencilerin sayısının erkek öğrencilerin sayısına oranı <span class="fr"><span>4</span><span>5</span></span>'tir. Sınıfta 36 öğrenci olduğuna göre kız öğrenci sayısını bulunuz.</div>
+      <div class="space"></div>
+    </section>
+  </main>
+  <footer class="ft">
+    <span>Ayşe Yılmaz · Örnek Akademi</span>
+    <span class="mid">ornekakademi.example · 0500 000 00 00</span>
+    <span class="pn">1</span>
+  </footer>
+</template>
+
+<script>
+  const aileler = [
+    ["sade", "Sade", "ince çizgi, tek renk, fotokopi dostu"],
+    ["akademik", "Akademik", "serifli, ders kitabı düzeni"],
+    ["canli", "Canlı", "dolu başlık bandı, renkli etiketler"],
+    ["teknik", "Teknik", "kareli zemin, künye tablosu"],
+  ];
+  const grid = document.getElementById("grid");
+  const icerik = document.getElementById("icerik");
+  for (const [id, ad, aciklama] of aileler) {
+    const fig = document.createElement("figure");
+    fig.innerHTML = `<figcaption><b>${ad}</b><span>${aciklama}</span></figcaption><div class="sheet"><article class="page t-${id}"></article></div>`;
+    fig.querySelector(".page").append(icerik.content.cloneNode(true));
+    grid.append(fig);
+  }
+  // ---- Yaprak test: iki sütun, 10 soru ----
+  const kesir = (a, b) => `<span class="fr"><span>${a}</span><span>${b}</span></span>`;
+  const x = `<i class="v">x</i>`, y = `<i class="v">y</i>`, a = `<i class="v">a</i>`, b = `<i class="v">b</i>`;
+  const sorular = [
+    [`${kesir(12, 18)} oranının en sade hâli aşağıdakilerden hangisidir?`, [kesir(2, 3), kesir(3, 4), kesir(3, 5), kesir(5, 6)]],
+    [`${kesir(4, 7)} = ${kesir(x, 21)} orantısında ${x} kaçtır?`, [9, 12, 14, 16]],
+    [`Bir sınıfta 12 kız ve 16 erkek öğrenci vardır. Kız öğrenci sayısının erkek öğrenci sayısına oranı kaçtır?`, [kesir(3, 4), kesir(4, 3), kesir(3, 7), kesir(4, 7)]],
+    [`3 kg elma 45 TL olduğuna göre aynı elmadan 7 kg kaç TL'dir?`, [90, 95, 105, 115]],
+    [`${kesir(a, b)} = ${kesir(2, 5)} ve ${a} + ${b} = 28 olduğuna göre ${a} kaçtır?`, [8, 10, 12, 20]],
+    [`Bir haritada 1 cm, gerçekte 5 km'yi göstermektedir. Haritada 3,5 cm olan yol gerçekte kaç km'dir?`, [15, "17,5", 18, 35]],
+    [`${x} ile ${y} doğru orantılıdır. ${x} = 6 iken ${y} = 15 olduğuna göre ${x} = 10 iken ${y} kaçtır?`, [20, 24, 25, 30]],
+    [`Aşağıdaki oranlardan hangisi ${kesir(3, 4)} ile orantı oluşturur?`, [kesir(6, 9), kesir(9, 12), kesir(12, 15), kesir(15, 18)]],
+    [`5 işçinin 12 günde bitirdiği bir işi, aynı hızla çalışan 6 işçi kaç günde bitirir?`, [8, 9, 10, 14]],
+    [`35 TL, iki kardeş arasında 2 : 5 oranında paylaştırılıyor. Az alan kardeş kaç TL alır?`, [10, 14, 15, 25]],
+  ];
+  const soruHtml = ([kok, siklar], i) =>
+    `<div class="soru"><span class="no">${i + 1}</span><div>${kok}<ol class="sik">${siklar.map((s) => `<li>${s}</li>`).join("")}</ol></div></div>`;
+  const sutun = (bas, son) => `<div class="col">${sorular.slice(bas, son).map((s, k) => soruHtml(s, bas + k)).join("")}</div>`;
+  for (const [id, ad] of [["canli", "Canlı"], ["teknik", "Teknik"]]) {
+    const fig = document.createElement("figure");
+    fig.innerHTML = `<figcaption><b>${ad} · Yaprak Test</b><span>iki sütun, ortadan bölünmüş</span></figcaption><div class="sheet"><article class="page t-${id}"></article></div>`;
+    const sayfa = fig.querySelector(".page");
+    sayfa.append(icerik.content.cloneNode(true));
+    sayfa.querySelector(".tur").textContent = "Yaprak Test";
+    sayfa.querySelector(".hd").insertAdjacentHTML("afterend", `<div class="adsoyad"><span>Ad Soyad:</span><span>Sınıf / No:</span><span>Tarih:</span></div>`);
+    const main = sayfa.querySelector("main");
+    main.className = "test";
+    main.innerHTML = sutun(0, 5) + sutun(5, 10);
+    grid.append(fig);
+  }
+
+  // Dar pencerede sayfa tek sütuna ve ekrana sığacak kadar küçülür.
+  const sigdir = () => {
+    const z = Math.min(0.6, (document.documentElement.clientWidth - 48) / 794);
+    document.querySelectorAll(".sheet").forEach((s) => (s.style.zoom = z));
+  };
+  sigdir();
+  addEventListener("resize", sigdir);
+  const gri =document.getElementById("gri");
+  gri.onclick = () => gri.setAttribute("aria-pressed", document.body.classList.toggle("gri"));
+</script>
+</body>
+</html>

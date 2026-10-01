@@ -1,0 +1,68 @@
+/* TEKNİK: kareli zemin, teknik resim künyesi, tek aralıklı etiketler. --a vurgu rengi. */
+.t-teknik {
+  font-family: "Space Grotesk", sans-serif;
+  background-image: linear-gradient(#e3e8f1 1px, transparent 1px), linear-gradient(90deg, #e3e8f1 1px, transparent 1px);
+  background-size: 19px 19px;
+}
+
+.t-teknik .hd { display: grid; grid-template-columns: 76px 1fr 130px 110px; border: 1.5px solid #1b1b1b; background: #fff; }
+.t-teknik .hd > * { padding: 8px 12px; border-right: 1.5px solid #1b1b1b; }
+.t-teknik .hd > *::before,
+.t-teknik .meta span::before {
+  display: block;
+  font: 500 9.5px "JetBrains Mono", monospace;
+  letter-spacing: 0.12em;
+  color: #6b7280;
+  margin-bottom: 1px;
+}
+.t-teknik .logo { grid-row: 1 / 3; display: grid; place-items: center; font: 700 20px "JetBrains Mono", monospace; color: var(--a); }
+.t-teknik .kurum { grid-column: 2; font-weight: 600; font-size: 14px; border-bottom: 1.5px solid #1b1b1b; }
+.t-teknik .kurum::before { content: "KURUM"; }
+.t-teknik h1 { grid-column: 2; grid-row: 2; font-size: 25px; font-weight: 700; line-height: 1.2; }
+.t-teknik h1::before { content: "KONU"; }
+.t-teknik .meta { grid-column: 3; grid-row: 1 / 3; display: grid; padding: 0; }
+.t-teknik .meta span { padding: 8px 12px; font-weight: 600; font-size: 14px; }
+.t-teknik .meta .ders { border-bottom: 1.5px solid #1b1b1b; }
+.t-teknik .meta .ders::before { content: "DERS"; }
+.t-teknik .meta .sinif::before { content: "SINIF"; }
+.t-teknik .tur { grid-column: 4; grid-row: 1 / 3; border-right: 0; font: 700 12px/1.35 "JetBrains Mono", monospace; text-transform: uppercase; color: var(--a); }
+.t-teknik .tur::before { content: "BELGE"; }
+
+/* Metin kareli zeminde okunmasın diye beyaz zemine oturur. */
+.t-teknik .blok > p,
+.t-teknik .ex { background: #fff; outline: 6px solid #fff; }
+.t-teknik h2 { font-size: 18px; font-weight: 700; background: #fff; width: fit-content; padding-right: 10px; }
+.t-teknik h2::before { content: "// "; font: 500 13px "JetBrains Mono", monospace; color: var(--a); }
+
+.t-teknik .box { background: #fff; border: 1.5px dashed #1b1b1b; padding: 12px 16px; position: relative; }
+.t-teknik .box::before,
+.t-teknik .box::after { content: ""; position: absolute; width: 10px; height: 10px; border: 2.5px solid var(--a); }
+.t-teknik .box::before { top: -3px; left: -3px; border-right: 0; border-bottom: 0; }
+.t-teknik .box::after { bottom: -3px; right: -3px; border-left: 0; border-top: 0; }
+.t-teknik .box .lbl { display: block; font: 700 12px "JetBrains Mono", monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--a); margin-bottom: 5px; }
+.t-teknik .box .lbl::before { content: "[ "; }
+.t-teknik .box .lbl::after { content: " ]"; }
+.t-teknik .box.dikkat { border-style: solid; border-width: 2px; }
+.t-teknik .box.dikkat .lbl::before { content: "! "; }
+.t-teknik .box.dikkat .lbl::after { content: ""; }
+.t-teknik ul li::before { border-radius: 0; height: 2px; width: 8px; top: 0.78em; left: 0; }
+
+.t-teknik .ex .lbl { font: 700 13px "JetBrains Mono", monospace; text-transform: uppercase; color: #fff; background: #1b1b1b; padding: 2px 8px; margin-right: 8px; }
+.t-teknik .sira .lbl { background: var(--a); }
+.t-teknik .sol { border-left: 1.5px solid #1b1b1b; padding-left: 14px; }
+.t-teknik .sl { font: 500 12px "JetBrains Mono", monospace; text-transform: uppercase; color: #6b7280; margin-right: 8px; }
+.t-teknik .space { border: 1.5px solid #1b1b1b; }
+
+.t-teknik .ft { font: 500 11px "JetBrains Mono", monospace; background: #fff; border: 1.5px solid #1b1b1b; padding: 6px 12px; }
+.t-teknik .pn::before { content: "SAYFA "; }
+
+/* ---- yaprak test ---- */
+.t-teknik .adsoyad { background: #fff; border: 1.5px solid #1b1b1b; border-top: 0; margin-top: 0; gap: 0; }
+.t-teknik .adsoyad span { border: 0; padding: 7px 12px; font: 500 11px "JetBrains Mono", monospace; letter-spacing: 0.08em; text-transform: uppercase; color: #6b7280; }
+.t-teknik .adsoyad span + span { border-left: 1.5px solid #1b1b1b; }
+.t-teknik .govde.test { background: #fff; border: 1.5px solid #1b1b1b; padding: 16px 14px; }
+.t-teknik .govde.test.iki::before { border-left: 1.5px solid #1b1b1b; }
+.t-teknik .soru .no { background: #1b1b1b; color: #fff; font: 700 13px/24px "JetBrains Mono", monospace; }
+.t-teknik .sik li::before { font-family: "JetBrains Mono", monospace; color: var(--a); }
+
+.t-teknik .anahtar { background: #fff; border: 1.5px solid #1b1b1b; padding: 6px 12px; font-family: "JetBrains Mono", monospace; font-size: 11.5px; }

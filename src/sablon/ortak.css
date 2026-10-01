@@ -1,0 +1,95 @@
+/* Bütün şablon ailelerinin paylaştığı kâğıt iskeleti. A4, 96 dpi (bkz. dizgi/olculer.ts). */
+.page,
+.page * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  width: 794px;
+  height: 1123px;
+  background: #fff;
+  color: #1b1b1b;
+  padding: 56px 60px 44px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  font-size: 15.5px;
+  line-height: 1.55;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* Sütun yüksekliği içerikten bağımsızdır: dizgi motoru bu yüksekliği kapasite olarak okur. */
+.govde {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--sutun, 1), minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr);
+  margin-top: 26px;
+}
+.sutun {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bosluk);
+  min-width: 0;
+  min-height: 0;
+}
+.govde.iki .sutun { padding-right: 24px; }
+.govde.iki .sutun + .sutun { padding: 0 0 0 24px; }
+/* Ayırıcı çizgi kenarlık değil: kenarlık sağ sütunu daraltıp ölçümü bozardı. */
+.govde.test.iki::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  border-left: 1.5px solid #999;
+}
+
+/* flow-root: içteki marjlar bloğun ölçülen yüksekliğine dahil olsun. */
+.blok { display: flow-root; }
+
+.page ul { list-style: none; display: grid; gap: 5px; }
+.page ul li { padding-left: 16px; position: relative; }
+.page ul li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--a);
+}
+.page .katex { font-size: 1.08em; }
+
+.sol { margin-top: 8px; }
+.space { margin-top: 10px; }
+
+.ft { display: flex; align-items: center; gap: 14px; font-size: 12px; margin-top: 18px; }
+.ft .mid { flex: 1; text-align: center; }
+
+/* ---- yaprak test ---- */
+.adsoyad { display: flex; gap: 14px; font-size: 13px; margin-top: 16px; }
+.adsoyad span { flex: 2; border-bottom: 1.5px dotted #555; padding: 0 2px 3px; font-weight: 600; }
+.adsoyad span + span { flex: 1; }
+.govde.test { margin-top: 18px; }
+/* Alttaki boşluk öğrencinin işlem alanıdır. */
+.soru { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; line-height: 1.5; padding-bottom: var(--soru-bosluk, 44px); }
+.soru > div { flex: 1; min-width: 0; }
+.soru .no { font-weight: 800; min-width: 28px; text-align: center; }
+.sik { list-style: none; display: grid; justify-content: space-between; gap: 6px 12px; margin-top: 9px; }
+.sik li::before { content: counter(list-item, upper-alpha) ")"; font-weight: 800; margin-right: 5px; }
+.kirpinti { display: block; height: auto; }
+.logo img { display: block; max-width: 100%; max-height: 100%; object-fit: contain; }
+.eksik { color: #888; }
+
+/* ---- cevap anahtarı: son sayfanın dibinde tam genişlikte şerit ---- */
+.anahtar { margin-top: var(--bosluk); padding-top: 8px; border-top: 1.5px solid var(--a); display: flex; align-items: baseline; gap: 12px; font-size: 12.5px; }
+.anahtar strong { color: var(--a); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+.anahtar ol { list-style: none; display: flex; flex-wrap: wrap; gap: 2px 12px; }
