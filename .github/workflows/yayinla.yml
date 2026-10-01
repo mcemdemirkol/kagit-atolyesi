@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Actions sekmesinden elle de çalıştırılabilir.
+  workflow_dispatch:
 
 permissions:
   contents: read
